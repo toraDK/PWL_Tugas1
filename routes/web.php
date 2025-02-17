@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'home']);
 
 //halaman produk
 Route::prefix('admin')->group(function(){
@@ -28,5 +28,5 @@ Route::prefix('admin')->group(function(){
 });
 
 
-Route::get('/user/{id}/name/{name}', UserController::class, 'profile');
-Route::get('/penjualan', PenjualanController::class, 'penjualan');
+Route::get('/user/{id}/name/{name}', [UserController::class, 'profile']);
+Route::get('/penjualan', [PenjualanController::class, 'penjualan']);
