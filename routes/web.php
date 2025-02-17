@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +17,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [HomeController::class, 'index']);
+
+//halaman produk
+Route::prefix('admin')->group(function(){
+    Route::get('/category/food-beverage', [ProductsController::class, 'food']);
+    Route::get('/category/beauty-health', [ProductsController::class, 'beauty']);
+    Route::get('/category/home-care', [ProductsController::class, 'home']);
+    Route::get('/category/baby-kid', [ProductsController::class, 'baby']);
 });
+
+
+Route::get('/user/{id}/name/{name}', UserController::class, 'profile');
+Route::get('/penjualan', PenjualanController::class, 'penjualan');
